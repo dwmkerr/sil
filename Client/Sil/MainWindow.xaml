@@ -1,0 +1,12 @@
+﻿<Window x:Class="Sil.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:main="clr-namespace:Sil.Main" Title="Sil" Height="480" Width="600" Icon="Resources/Sil.ico">
+    <Grid>
+        
+        <!-- SDI view. -->
+        <main:SingleDocumentView />
+        
+        <!-- MDI view. -->
+        <!-- <main:MultiDocumentView /> -->
+    </Grid>
+</Window>

@@ -1,0 +1,50 @@
+﻿<UserControl x:Class="Sil.Main.SingleDocumentView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" xmlns:local="clr-namespace:Sil.Main"
+             xmlns:apexControls="clr-namespace:Apex.Controls;assembly=Apex"
+             xmlns:apexConverters="clr-namespace:Apex.Converters;assembly=Apex"
+             mc:Ignorable="d" 
+             d:DesignHeight="300" d:DesignWidth="300">
+    
+    <UserControl.DataContext>
+        <local:SingleDocumentViewModel x:Name="viewModel" />
+    </UserControl.DataContext>
+    
+    
+    <UserControl.Resources>
+        <apexConverters:NullToVisibilityConverter x:Key="NullToVisibilityConverter" />
+    </UserControl.Resources>
+    
+    <DockPanel>
+        <Menu DockPanel.Dock="Top">
+            <MenuItem Header="File">
+                <MenuItem x:Name="menuItemDisassemble" Header="_Disassemble..." Click="MenuItemDisassemble_OnClick" />
+                <Separator />
+                <MenuItem x:Name="menuItemExit" Header="E_xit" Click="MenuItemExit_OnClick" />
+            </MenuItem>
+        </Menu>
+        
+        <Grid x:Name="gridDragAndDropHost" AllowDrop="True"
+              PreviewDragEnter="GridDragAndDropHost_OnPreviewDragEnter"
+              PreviewDragOver="GridDragAndDropHost_OnPreviewDragOver"
+              PreviewDrop="GridDragAndDropHost_OnPreviewDrop">
+        
+            
+            <local:DocumentView 
+                x:Name="documentView" 
+                Visibility="{Binding Document, Converter={StaticResource NullToVisibilityConverter}}" />
+                    
+            <!-- Content to display when there are no documents. -->
+            <Grid Background="Transparent"
+                Visibility="{Binding Document, Converter={StaticResource NullToVisibilityConverter}, ConverterParameter=Invert}">
+                
+            <TextBlock HorizontalAlignment="Center" VerticalAlignment="Center" TextWrapping="Wrap" MaxWidth="440">
+                <Run>Choose 'Disassemble' from the main menu, or drag and drop an assembly onto this window to disassemble it.</Run>
+                </TextBlock>
+            </Grid>
+
+        </Grid>
+    </DockPanel>
+</UserControl>

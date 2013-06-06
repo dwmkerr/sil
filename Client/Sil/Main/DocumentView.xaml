@@ -1,0 +1,46 @@
+﻿<UserControl x:Class="Sil.Main.DocumentView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" xmlns:local="clr-namespace:Sil.Main"
+             xmlns:apexControls="clr-namespace:Apex.Controls;assembly=Apex"
+             xmlns:avalonEdit="clr-namespace:ICSharpCode.AvalonEdit;assembly=ICSharpCode.AvalonEdit"
+             xmlns:apexConverters="clr-namespace:Apex.Converters;assembly=Apex"
+             xmlns:converters="clr-namespace:Sil.Converters" xmlns:silUi="clr-namespace:SilUI;assembly=SilUI"
+             mc:Ignorable="d" 
+             d:DesignHeight="300" d:DesignWidth="300">
+    
+    <UserControl.Resources>
+        <converters:ElementNodeTypeToImageSourceConverter x:Key="ElementNodeTypeToImageSourceConverter" />
+        
+    </UserControl.Resources>
+
+    <apexControls:ApexGrid Columns="220,Auto,*">
+
+        <!-- Doc tree. -->
+        <TreeView ItemsSource="{Binding ElementNodes}" SelectedItemChanged="TreeView_OnSelectedItemChanged">
+            <TreeView.ItemTemplate>
+                <HierarchicalDataTemplate ItemsSource="{Binding Nodes}">
+                    <apexControls:ApexGrid Columns="Auto,*">
+                        <Image Source="{Binding ElementNodeType, Converter={StaticResource ElementNodeTypeToImageSourceConverter}}" Width="16" Height="16" Margin="2" />
+                        <TextBlock Grid.Column="1" VerticalAlignment="Center">
+                        <Run Text="{Binding DisplayName}" />
+                        </TextBlock>
+                    </apexControls:ApexGrid>
+                </HierarchicalDataTemplate>
+                </TreeView.ItemTemplate>
+        </TreeView>
+
+        <GridSplitter Width="5" Grid.Column="1" ResizeBehavior="PreviousAndNext" ResizeDirection="Columns"></GridSplitter>
+
+        <!-- The text editor to show the IL. -->
+        <silUi:SilView Margin="2"
+                x:Name="silView" Grid.Column="2"
+                       ShowBreadcrumbsBar="True"
+            />
+        
+        
+
+      
+    </apexControls:ApexGrid>
+</UserControl>

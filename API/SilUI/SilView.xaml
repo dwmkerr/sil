@@ -1,0 +1,109 @@
+﻿<UserControl x:Class="SilUI.SilView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" xmlns:silUi="clr-namespace:SilUI"
+             xmlns:apexControls="clr-namespace:Apex.Controls;assembly=Apex"
+             xmlns:apexConverters="clr-namespace:Apex.Converters;assembly=Apex"
+             xmlns:Converters="clr-namespace:SilUI.Converters" mc:Ignorable="d" 
+             x:Name="silView"
+             d:DesignHeight="400" d:DesignWidth="600">
+    
+    <UserControl.DataContext>
+        <silUi:SilViewModel />
+    </UserControl.DataContext>
+    
+    <UserControl.Resources>
+        <apexConverters:BooleanToVisibilityConverter x:Key="BooleanToVisibilityConverter" />
+        <Converters:DisassembledEntityToImageSourceConverter x:Key="DisassembledEntityToImageSourceConverter" />
+    </UserControl.Resources>
+    
+    <DockPanel>
+        <ToolBarTray DockPanel.Dock="Top">
+            <ToolBar>
+              <!--  <CheckBox ToolTip="Show Assembly Tree" IsChecked="{Binding ShowAssemblyTree, ElementName=silView}">
+                    <Image Source="Resources/Icons/Tree.png" />
+                </CheckBox>-->
+                <CheckBox ToolTip="Show Breadcrumbs" IsChecked="{Binding ShowBreadcrumbsBar, ElementName=silView}">
+                    <Image Source="Resources/Icons/Breadcrumbs.png" />
+                </CheckBox>
+                <CheckBox ToolTip="Show Source Comments" IsChecked="{Binding ShowComments, ElementName=silView}">
+                    <Image Source="Resources/Icons/Comment.png" />
+                </CheckBox>
+                <CheckBox ToolTip="Show Annotation" IsChecked="{Binding ShowAnnotation, ElementName=silView}">
+                    <Image Source="Resources/Icons/Annotate.png" />
+                </CheckBox>
+                <Separator />
+                <Button x:Name="buttonGoogleSelection" Click="buttonGoogleSelection_Click"  ToolTip="Google Selection">
+                    <Image Source="Resources/Icons/Google.png" />
+                </Button>
+            </ToolBar>
+        </ToolBarTray>
+    
+        <apexControls:ApexGrid Rows="*,Auto,Auto">
+
+            <!-- Grid to hold the assembly tree and editor. -->
+            <apexControls:ApexGrid Columns="Auto,Auto,*">
+
+                <!-- The assembly tree. -->
+                <TreeView
+                    Visibility="{Binding ShowAssemblyTree, ElementName=silView, Converter={StaticResource BooleanToVisibilityConverter}}"
+                    Width="220" />
+                
+                <!-- The splitter. -->
+                <GridSplitter Grid.Column="1" Width="5" ResizeBehavior="PreviousAndNext" ResizeDirection="Columns"
+                    Visibility="{Binding ShowAssemblyTree, ElementName=silView, Converter={StaticResource BooleanToVisibilityConverter}}" />
+                
+                <!-- The main Disassembly Editor. -->
+                <silUi:DisassemblyEditor 
+                  x:Name="disassemblyEditor" Grid.Column="2" FontFamily="Consolas" FontSize="12" ShowLineNumbers="True" />
+            
+            </apexControls:ApexGrid>
+            
+
+            <!-- Grid to show 'disassembling' progress. -->
+            <apexControls:ApexGrid 
+                Grid.ColumnSpan="3"
+                Rows="*,Auto,Auto,*" Background="White"
+                Visibility="{Binding IsDisassembling, Converter={StaticResource BooleanToVisibilityConverter}}">
+                <apexControls:CircularProgressBar Grid.Row="1" Width="32" Height="32"></apexControls:CircularProgressBar>
+                <TextBlock Grid.Row="2" Margin="4" HorizontalAlignment="Center">Disassembling...</TextBlock>
+            </apexControls:ApexGrid>
+            
+            <!-- Annotation bar. -->
+            <Border Grid.Row="1" Visibility="{Binding ShowAnnotation, ElementName=silView, Converter={StaticResource BooleanToVisibilityConverter}}">
+                <apexControls:ApexGrid Rows="Auto,Auto">
+
+                    <TextBlock TextWrapping="Wrap">
+                    The 'Annotate' feature will arrive in the next version. It will present a description of a what the selected line of IL actually does.
+                    </TextBlock>
+                    <TextBlock Grid.Row="1">
+                        <Run FontWeight="Bold">Full Name: </Run> <Run Text="{Binding SelectedEntity.FullName, ElementName=silView, Mode=OneWay}" />
+                        <Run FontWeight="Bold">Template Specifiation: </Run> <Run Text="{Binding SelectedEntity.TemplateSpecification, ElementName=silView, Mode=OneWay}" />
+                    </TextBlock>
+                </apexControls:ApexGrid>
+            </Border>
+                
+                <!-- Breadcrumbs bar. -->
+            <Border Grid.Row="2" Visibility="{Binding ShowBreadcrumbsBar, ElementName=silView, Converter={StaticResource BooleanToVisibilityConverter}}">
+           
+                <ItemsControl ItemsSource="{Binding Breadcrumbs}">
+                    <ItemsControl.ItemsPanel>
+                        <ItemsPanelTemplate>
+                            <StackPanel Orientation="Horizontal"></StackPanel>
+                        </ItemsPanelTemplate>
+                    </ItemsControl.ItemsPanel>
+                    <ItemsControl.ItemTemplate>
+                        <DataTemplate>
+                            <apexControls:ApexGrid Columns="Auto,Auto" Margin="0,0,4,0">
+                                <Image Source="{Binding Converter={StaticResource DisassembledEntityToImageSourceConverter}}" />
+                                <TextBlock Grid.Column="1" VerticalAlignment="Center" Margin="4"><Hyperlink Command="{Binding DataContext.SelectBreadcrumbCommand, ElementName=silView}" CommandParameter="{Binding}"><Run Text="{Binding ShortName, Mode=OneWay}" /></Hyperlink></TextBlock>
+                            </apexControls:ApexGrid>
+                            
+                        </DataTemplate>
+                    </ItemsControl.ItemTemplate>
+                </ItemsControl>
+            </Border>
+        </apexControls:ApexGrid>
+    </DockPanel>
+</UserControl>

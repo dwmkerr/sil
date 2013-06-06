@@ -1,0 +1,157 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>Sil.VS2012</name>
+    </assembly>
+    <members>
+        <member name="T:Sil.VS2012.Connect">
+            <summary>The object for implementing an Add-in.</summary>
+            <seealso class='IDTExtensibility2' />
+        </member>
+        <member name="M:Sil.VS2012.Connect.OnConnection(System.Object,Extensibility.ext_ConnectMode,System.Object,System.Array@)">
+            <summary>
+            Implements the OnConnection method of the IDTExtensibility2 interface. Receives notification that the Add-in is being loaded.
+            </summary>
+            <param name="application">The application.</param>
+            <param name="connectMode">The connect mode.</param>
+            <param name="addInInst">The add in inst.</param>
+            <param name="custom">The custom.</param>
+            <seealso class="IDTExtensibility2" />
+        </member>
+        <member name="M:Sil.VS2012.Connect.CreateCommands">
+            <summary>
+            Creates the commands.
+            </summary>
+        </member>
+        <member name="M:Sil.VS2012.Connect.HandleException(System.String,System.Exception)">
+            <summary>
+            Handles exceptions.
+            </summary>
+            <param name="message">The message.</param>
+            <param name="exception">The exception.</param>
+        </member>
+        <member name="M:Sil.VS2012.Connect.OnDisconnection(Extensibility.ext_DisconnectMode,System.Array@)">
+            <summary>
+            Implements the OnDisconnection method of the IDTExtensibility2 interface. Receives notification that the Add-in is being unloaded.
+            </summary>
+            <param name="disconnectMode">The disconnect mode.</param>
+            <param name="custom">The custom.</param>
+            <seealso class="IDTExtensibility2" />
+        </member>
+        <member name="M:Sil.VS2012.Connect.OnAddInsUpdate(System.Array@)">
+            <summary>
+            Implements the OnAddInsUpdate method of the IDTExtensibility2 interface. Receives notification when the collection of Add-ins has changed.
+            </summary>
+            <param name="custom">The custom.</param>
+            <seealso class="IDTExtensibility2" />
+        </member>
+        <member name="M:Sil.VS2012.Connect.OnStartupComplete(System.Array@)">
+            <summary>
+            Implements the OnStartupComplete method of the IDTExtensibility2 interface. Receives notification that the host application has completed loading.
+            </summary>
+            <param name="custom">The custom.</param>
+            <seealso class="IDTExtensibility2" />
+        </member>
+        <member name="M:Sil.VS2012.Connect.OnBeginShutdown(System.Array@)">
+            <summary>
+            Implements the OnBeginShutdown method of the IDTExtensibility2 interface. Receives notification that the host application is being unloaded.
+            </summary>
+            <param name="custom">The custom.</param>
+            <seealso class="IDTExtensibility2" />
+        </member>
+        <member name="M:Sil.VS2012.Connect.QueryStatus(System.String,EnvDTE.vsCommandStatusTextWanted,EnvDTE.vsCommandStatus@,System.Object@)">
+            <summary>
+            Queries the status.
+            </summary>
+            <param name="CmdName">Name of the CMD.</param>
+            <param name="NeededText">The needed text.</param>
+            <param name="StatusOption">The status option.</param>
+            <param name="CommandText">The command text.</param>
+        </member>
+        <member name="M:Sil.VS2012.Connect.Exec(System.String,EnvDTE.vsCommandExecOption,System.Object@,System.Object@,System.Boolean@)">
+            <summary>
+            Execs the specified CMD name.
+            </summary>
+            <param name="CmdName">Name of the CMD.</param>
+            <param name="ExecuteOption">The execute option.</param>
+            <param name="VariantIn">The variant in.</param>
+            <param name="VariantOut">The variant out.</param>
+            <param name="Handled">if set to <c>true</c> [handled].</param>
+        </member>
+        <member name="T:Sil.VS2012.Resources">
+            <summary>
+              A strongly-typed resource class, for looking up localized strings, etc.
+            </summary>
+        </member>
+        <member name="P:Sil.VS2012.Resources.ResourceManager">
+            <summary>
+              Returns the cached ResourceManager instance used by this class.
+            </summary>
+        </member>
+        <member name="P:Sil.VS2012.Resources.Culture">
+            <summary>
+              Overrides the current thread's CurrentUICulture property for all
+              resource lookups using this strongly typed resource class.
+            </summary>
+        </member>
+        <member name="P:Sil.VS2012.Resources._1">
+            <summary>
+              Looks up a localized resource of type System.Drawing.Bitmap.
+            </summary>
+        </member>
+        <member name="P:Sil.VS2012.Resources.sil">
+            <summary>
+              Looks up a localized resource of type System.Drawing.Icon similar to (Icon).
+            </summary>
+        </member>
+        <member name="T:Sil.VS2012.SilViewHostWrapper">
+            <summary>
+            A host for the main Sil interface.
+            </summary>
+        </member>
+        <member name="M:Sil.VS2012.SilViewHostWrapper.#ctor">
+            <summary>
+            Initializes a new instance of the <see cref="T:Sil.VS2012.SilViewHostWrapper"/> class.
+            </summary>
+        </member>
+        <member name="M:Sil.VS2012.SilViewHostWrapper.InitialiseParentWindow(EnvDTE80.Window2)">
+            <summary>
+            Initialises the parent window.
+            </summary>
+            <param name="window">The window.</param>
+        </member>
+        <member name="F:Sil.VS2012.SilViewHostWrapper.components">
+            <summary> 
+            Required designer variable.
+            </summary>
+        </member>
+        <member name="M:Sil.VS2012.SilViewHostWrapper.Dispose(System.Boolean)">
+            <summary> 
+            Clean up any resources being used.
+            </summary>
+            <param name="disposing">true if managed resources should be disposed; otherwise, false.</param>
+        </member>
+        <member name="M:Sil.VS2012.SilViewHostWrapper.InitializeComponent">
+            <summary> 
+            Required method for Designer support - do not modify 
+            the contents of this method with the code editor.
+            </summary>
+        </member>
+        <member name="P:Sil.VS2012.SilViewHostWrapper.HostWindow">
+            <summary>
+            Gets or sets the host window.
+            </summary>
+            <value>
+            The host window.
+            </value>
+        </member>
+        <member name="P:Sil.VS2012.SilViewHostWrapper.SilViewHost">
+            <summary>
+            Gets the sil view host.
+            </summary>
+            <value>
+            The sil view host.
+            </value>
+        </member>
+    </members>
+</doc>

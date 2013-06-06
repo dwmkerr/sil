@@ -1,0 +1,89 @@
+Addin
+=====
+
+DONE: Command name should be 'Disassemble'.
+DONE: Right click on 'class' and choose 'disassemble'.
+DONE: Right click on 'method' and choose 'disassemble'.
+DONE: Right click on 'field' and choose 'disassemble'.
+DONE: Right click on 'property' and choose 'disassemble'.
+DONE: Right click on'event' and choose 'disassemble'.
+DONE: Right click on 'delegate' and choose 'disassemble'.
+DONE: Right click on 'struct' and choose 'disassemble'.
+DONE: Right click on 'interface' and choose 'disassemble'.
+DONE: When seeing disassembly, see breadcrumb for containing elements.
+DONE: Support hide/show breadcrumbs.
+DONE: Option to hide comments.
+DONE: When navigating via breadcrumbs, update title.
+DONE: When opening, using short name.
+DONE: Apex internal structures cannot be diassembled (the name is wrong).
+DONE: Apex internal delegates cannot be diassembled (the name is wrong). (template parsing?)
+
+Client
+======
+
+DONE: Drag and drop files onto main window.
+DONE: Alphabetic tree.
+DONE: Disassemble assembly into view.
+DONE: Read raw IL into view.
+DONE: See list of classes
+DONE: See each class details.
+  DONE: Methods
+  DONE: Fields
+  DONE: Properties
+  DONE: Events
+  DONE: Nested Classes
+DONE: Google selection.
+DONE: Support hide/show breadcrumbs.
+
+UI API
+======
+
+DONE: Support breadcrumbs bar.
+DONE: Icons in the breadcrumbs bar.
+DONE: Apex DependencyObjectExtensions not loaded properly.
+
+API
+===
+
+DONE: Handle deep/mixed nesting.
+DONE: Non-ilclasses (e.g. methods fields) need parent set.
+
+Other
+=====
+
+DONE: Build installer.
+DONE: Support Visual Studio 2010.
+
+Version 1.0
+===========
+
+DONE: Sort out VS2012 deploy.
+DONE: Sort out icons.
+DONE: Create article describing how Sil was built.
+* Create Intermediate Language (1 of x) article.
+* Create page on dwmkerr.com
+* Upload to Git.
+
+Next Version
+============
+
+* Annotate IL feature.
+* Disassembly selection in Visual Studio (do-able, as the source code comments will be there).
+* Sensible text editor context menu.
+* Handle assembly references.
+* Addin: Right click on template class and choose disassemble.
+* Addin: Right click on template interface and choose disassemble.
+* Addin: Right click on template class and choose disassemble.
+* Addin: Right click on template class and choose disassemble.
+* Addin: Support disassemble constructor (doesn't find, not mapping ctor).
+* API: Handle RawFullIL and RawIl. FullIL includes IL for child objects (e.g. a class containing a class).
+		IMPORTANT: A struct shows fields, so a class should show nested classes.
+* API: Template functions are not handled correctly.
+* API: Test template functions.
+* API: Test template classes.
+* API: Test anonymous types.
+* Addin: Show Sil icon in toolbar.
+* Addin: Support Assembly Tree.
+* UI API: Support Assembly Tree.
+* Client: Support MDI.
+* Client: Support Save/Save As.
