@@ -1,4 +1,4 @@
-﻿namespace Sil.VS2012
+﻿namespace Sil.VSCommon
 {
     partial class SilViewHostWrapper
     {

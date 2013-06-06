@@ -52,6 +52,20 @@
     <Compile Include="..\..\SharedAssemblyInfo.cs">
       <Link>SharedAssemblyInfo.cs</Link>
     </Compile>
+    <Compile Include="..\Sil.VS2012\Common\ExceptionHandler.cs">
+      <Link>Common\ExceptionHandler.cs</Link>
+    </Compile>
+    <Compile Include="..\Sil.VS2012\Common\SilAddinInstance.cs">
+      <Link>Common\SilAddinInstance.cs</Link>
+    </Compile>
+    <Compile Include="..\Sil.VS2012\Common\SilViewHostWrapper.cs">
+      <Link>Common\SilViewHostWrapper.cs</Link>
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="..\Sil.VS2012\Common\SilViewHostWrapper.designer.cs">
+      <Link>Common\SilViewHostWrapper.designer.cs</Link>
+      <DependentUpon>SilViewHostWrapper.cs</DependentUpon>
+    </Compile>
     <Compile Include="AssemblyInfo.cs">
       <SubType>Code</SubType>
     </Compile>
@@ -62,12 +76,6 @@
       <DependentUpon>Resources.resx</DependentUpon>
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
-    </Compile>
-    <Compile Include="SilViewHostWrapper.cs">
-      <SubType>UserControl</SubType>
-    </Compile>
-    <Compile Include="SilViewHostWrapper.Designer.cs">
-      <DependentUpon>SilViewHostWrapper.cs</DependentUpon>
     </Compile>
   </ItemGroup>
   <ItemGroup>
@@ -127,9 +135,6 @@
     </COMReference>
   </ItemGroup>
   <ItemGroup>
-    <Content Include="..\..\..\..\..\..\Users\Dave Kerr\Documents\Visual Studio 2010\Addins\Sil.VS2010 - For Testing.AddIn">
-      <Link>Sil.VS2010 - For Testing.AddIn</Link>
-    </Content>
     <None Include="Resources\1.bmp" />
     <None Include="Resources\sil.ico" />
     <Content Include="Sil.VS2010.AddIn" />
@@ -152,9 +157,9 @@
     </None>
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="SilViewHostWrapper.resx">
+    <EmbeddedResource Include="..\Sil.VS2012\Common\SilViewHostWrapper.resx">
+      <Link>Common\SilViewHostWrapper.resx</Link>
       <DependentUpon>SilViewHostWrapper.cs</DependentUpon>
-      <SubType>Designer</SubType>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSHARP.Targets" />

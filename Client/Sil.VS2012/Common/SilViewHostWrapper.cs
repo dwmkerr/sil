@@ -8,7 +8,7 @@ using System.Text;
 using System.Windows.Forms;
 using EnvDTE80;
 
-namespace Sil.VS2010
+namespace Sil.VSCommon
 {
     /// <summary>
     /// A host for the main Sil interface.

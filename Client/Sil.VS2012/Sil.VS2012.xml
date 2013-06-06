@@ -18,18 +18,6 @@
             <param name="custom">The custom.</param>
             <seealso class="IDTExtensibility2" />
         </member>
-        <member name="M:Sil.VS2012.Connect.CreateCommands">
-            <summary>
-            Creates the commands.
-            </summary>
-        </member>
-        <member name="M:Sil.VS2012.Connect.HandleException(System.String,System.Exception)">
-            <summary>
-            Handles exceptions.
-            </summary>
-            <param name="message">The message.</param>
-            <param name="exception">The exception.</param>
-        </member>
         <member name="M:Sil.VS2012.Connect.OnDisconnection(Extensibility.ext_DisconnectMode,System.Array@)">
             <summary>
             Implements the OnDisconnection method of the IDTExtensibility2 interface. Receives notification that the Add-in is being unloaded.
@@ -78,6 +66,18 @@
             <param name="VariantOut">The variant out.</param>
             <param name="Handled">if set to <c>true</c> [handled].</param>
         </member>
+        <member name="T:Sil.VSCommon.ExceptionHandler">
+            <summary>
+            A basic exception handler for the plugin.
+            </summary>
+        </member>
+        <member name="M:Sil.VSCommon.ExceptionHandler.HandleException(System.String,System.Exception)">
+            <summary>
+            Handles the exception.
+            </summary>
+            <param name="message">The message.</param>
+            <param name="exception">The exception.</param>
+        </member>
         <member name="T:Sil.VS2012.Resources">
             <summary>
               A strongly-typed resource class, for looking up localized strings, etc.
@@ -104,40 +104,112 @@
               Looks up a localized resource of type System.Drawing.Icon similar to (Icon).
             </summary>
         </member>
-        <member name="T:Sil.VS2012.SilViewHostWrapper">
+        <member name="T:Sil.VSCommon.SilAddinInstance">
+            <summary>
+            Represents the Sil addin instance.
+            </summary>
+        </member>
+        <member name="M:Sil.VSCommon.SilAddinInstance.#ctor(EnvDTE80.DTE2,EnvDTE.AddIn)">
+            <summary>
+            Initializes a new instance of the <see cref="T:Sil.VSCommon.SilAddinInstance"/> class.
+            </summary>
+            <param name="application">The application.</param>
+            <param name="addIn">The add in.</param>
+        </member>
+        <member name="M:Sil.VSCommon.SilAddinInstance.CreateCommands">
+            <summary>
+            Creates the commands.
+            </summary>
+        </member>
+        <member name="M:Sil.VSCommon.SilAddinInstance.CreateUserInterface">
+            <summary>
+            Creates the user interface.
+            </summary>
+        </member>
+        <member name="M:Sil.VSCommon.SilAddinInstance.DestroyUserInterface">
+            <summary>
+            Destroys the user interface.
+            </summary>
+        </member>
+        <member name="M:Sil.VSCommon.SilAddinInstance.CleanUpCodeMenu(Microsoft.VisualStudio.CommandBars.CommandBar)">
+            <summary>
+            Cleans up code menu.
+            </summary>
+            <param name="codeMenu">The code menu.</param>
+        </member>
+        <member name="M:Sil.VSCommon.SilAddinInstance.ExecuteSilCommand">
+            <summary>
+            Executes the sil command.
+            </summary>
+        </member>
+        <member name="M:Sil.VSCommon.SilAddinInstance.QueryCommandStatus(System.String,EnvDTE.vsCommandStatusTextWanted,EnvDTE.vsCommandStatus@,System.Object@)">
+            <summary>
+            Queries the command status.
+            </summary>
+            <param name="cmdName">Name of the CMD.</param>
+            <param name="neededText">The needed text.</param>
+            <param name="statusOption">The status option.</param>
+            <param name="commandText">The command text.</param>
+        </member>
+        <member name="M:Sil.VSCommon.SilAddinInstance.ExecuteCommand(System.String,EnvDTE.vsCommandExecOption,System.Object@,System.Object@,System.Boolean@)">
+            <summary>
+            Executes the command.
+            </summary>
+            <param name="cmdName">Name of the CMD.</param>
+            <param name="executeOption">The execute option.</param>
+            <param name="variantIn">The variant in.</param>
+            <param name="variantOut">The variant out.</param>
+            <param name="handled">if set to <c>true</c> [handled].</param>
+        </member>
+        <member name="M:Sil.VSCommon.SilAddinInstance.IdentifyDisassemblyTargets">
+            <summary>
+            Identifies the disassembly targets.
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:Sil.VSCommon.SilAddinInstance.SilUI#IDisassemblyProvider#DisassembleAssembly">
+            <summary>
+            Disassembles the assembly.
+            </summary>
+            <returns>
+            A task to disassemble the assembly.
+            </returns>
+            <exception cref="T:System.InvalidOperationException">There is no current project to disassemble.</exception>
+        </member>
+        <member name="T:Sil.VSCommon.SilViewHostWrapper">
             <summary>
             A host for the main Sil interface.
             </summary>
         </member>
-        <member name="M:Sil.VS2012.SilViewHostWrapper.#ctor">
+        <member name="M:Sil.VSCommon.SilViewHostWrapper.#ctor">
             <summary>
-            Initializes a new instance of the <see cref="T:Sil.VS2012.SilViewHostWrapper"/> class.
+            Initializes a new instance of the <see cref="T:Sil.VSCommon.SilViewHostWrapper"/> class.
             </summary>
         </member>
-        <member name="M:Sil.VS2012.SilViewHostWrapper.InitialiseParentWindow(EnvDTE80.Window2)">
+        <member name="M:Sil.VSCommon.SilViewHostWrapper.InitialiseParentWindow(EnvDTE80.Window2)">
             <summary>
             Initialises the parent window.
             </summary>
             <param name="window">The window.</param>
         </member>
-        <member name="F:Sil.VS2012.SilViewHostWrapper.components">
+        <member name="F:Sil.VSCommon.SilViewHostWrapper.components">
             <summary> 
             Required designer variable.
             </summary>
         </member>
-        <member name="M:Sil.VS2012.SilViewHostWrapper.Dispose(System.Boolean)">
+        <member name="M:Sil.VSCommon.SilViewHostWrapper.Dispose(System.Boolean)">
             <summary> 
             Clean up any resources being used.
             </summary>
             <param name="disposing">true if managed resources should be disposed; otherwise, false.</param>
         </member>
-        <member name="M:Sil.VS2012.SilViewHostWrapper.InitializeComponent">
+        <member name="M:Sil.VSCommon.SilViewHostWrapper.InitializeComponent">
             <summary> 
             Required method for Designer support - do not modify 
             the contents of this method with the code editor.
             </summary>
         </member>
-        <member name="P:Sil.VS2012.SilViewHostWrapper.HostWindow">
+        <member name="P:Sil.VSCommon.SilViewHostWrapper.HostWindow">
             <summary>
             Gets or sets the host window.
             </summary>
@@ -145,7 +217,7 @@
             The host window.
             </value>
         </member>
-        <member name="P:Sil.VS2012.SilViewHostWrapper.SilViewHost">
+        <member name="P:Sil.VSCommon.SilViewHostWrapper.SilViewHost">
             <summary>
             Gets the sil view host.
             </summary>
