@@ -20,3 +20,5 @@ Thumbs.db
 obj/
 [Rr]elease*/
 _ReSharper*/
+packages/Apex.1.5.0/Apex.1.5.0.nupkg
+packages/
