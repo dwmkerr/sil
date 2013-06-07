@@ -204,5 +204,19 @@ namespace SilAPI.Tests
             //  Make sure we have found the entity.
             Assert.IsNotNull(templateMethod, string.Format("Failed to find target {0}.", target));
         }
+
+        [Test]
+        [Description("Ensures that a template class can be targetted.")]
+        public void CanTargetTemplateClass()
+        {
+            //  Create the target.
+            var target = new DisassemblyTarget(DisassemblyTargetType.Class, "AcceptanceModel.TemplateClassWithIndexer<T>");
+
+            //  Try and find the entity.
+            var entity = disassembledAssembly.FindDisassembledEntity(target);
+
+            //  Make sure we have found the entity.
+            Assert.IsNotNull(entity, string.Format("Failed to find target {0}.", target));
+        }
     }
 }

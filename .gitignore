@@ -22,3 +22,4 @@ obj/
 _ReSharper*/
 packages/
 Client/Sil.VS2010/Sil.VS2010.xml
+DeploymentPackage/
