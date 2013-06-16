@@ -19,7 +19,7 @@ namespace Sil.Main
         {
             //  Show a file open dialog.
             var dialog = new Microsoft.Win32.OpenFileDialog();
-            dialog.Filter = "PE Files (*.dll)|*.dll";
+            dialog.Filter = "PE Files (*.exe, *.dll)|*.exe;*.dll|All Files (*.*)|*.*";
             if (dialog.ShowDialog() == true)
             {
                 LoadAssembly(dialog.FileName);
